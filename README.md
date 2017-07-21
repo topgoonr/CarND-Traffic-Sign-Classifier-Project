@@ -168,16 +168,36 @@ My final model consisted of the following layers:
 | Dropout       		|           									|
 | Fully connected		| 1x84 * 84*43 --> 1x43, no activation  		|
 | Softmax				| Softmax with Cross Entropy 					|
-|						|												|
+| Optimizer				| Adam optimizer   							    |
 |						|												|
  
 
 
 ####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an ....
+** Training 
+To train the model, I batches of 128 each
+The optimizer is an AdamOptimizer. 
+
+I started using 10 Epochs. However, this was not converging at 10. A value of 20 did it fine. 
+
+Having a GPU for training, does most definitely help, as the durations of the training can be quite long otherwise.
+
 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+
+** Approach for finding a solution
+
+With a base as LeNet was clearly inadequate. 
+Preprocessing the images started helping the overall cause, as the results started to look better on validation.
+However I still had a peak of 91% at this point of time. 
+
+Looking at the Covnets and making them deeper definitely helped, as the overall accuracy started touching 93%. 
+
+Adding dropouts added a further more percentage points to the overall NN. 
+
+Although, I tried increasing the size of the fully connected layers. This was not achieving the desired results for me. 
+
 
 My final model results were:
 * training set accuracy of ?
