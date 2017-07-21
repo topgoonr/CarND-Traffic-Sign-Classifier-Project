@@ -78,6 +78,7 @@ All the images were manipulated in the RGB colour scheme.
 All the three techniques were just enough for augmentation. I call these 'perturbations' throughout the code.
 
 Here is a look at the images after a standard jitter: 
+
 ![Original image and its jittered counterpart](./examples/jitterimage.png)
 
 **Design and Test a Model Architecture
@@ -89,6 +90,7 @@ As described in the previous section additional data was generated to augment th
 This improved the overall frequencies of the various class of traffic signs. 
 
 The data looks like this after the augmentation of the perturbations: 
+
 ![After augmentation with perturbations](./examples/dataafteraug.png)
 
 However, this would still not be enough. There was the matter of cleaning up the image too.
@@ -124,23 +126,48 @@ The difference between the original data set and the augmented data set is the f
 
 Of course, this does not change the frequencies of the augmented data set: Only the individual images.
 The augmented data set looks like this: 
-![After augmentation with perturbations][./examples/dataafteraug.png]
+
+![After augmentation with perturbations](./examples/dataafteraug.png)
 
 
+** The Final Architecture of the Neural Net
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+
+I started with LeNet and graduated to a much more deeper layer of NNs.
+LeNet was giving me 88% validation accuracy off the bat, but more needed to be done.
+
+I started building a second NN that would have a complex Covnet sequence -- one which 
+would keep building the depth of the Covnet beyond 43. It goes upto 64.
+
+The filters were largely of dim 5x5 for the most part in these Covnets.
+
+So, I built a 3 sequence Covnet+MaxPooling layers followed by 2 fully connected layers with a Dropout.
+
+The code 'secondneuralnetarch' describes this in great detail.
+
 
 My final model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Convolution 3x3     	| 1x1 stride, valid padding, outputs 28x28x16 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
+| Max pooling	      	| 2x2 stride,  outputs 14x14x16 				|
+| Convolution 3x3     	| 1x1 stride, valid padding, outputs 10x10x32 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x32   				|
+| Convolution 3x3     	| 1x1 stride, valid padding, outputs 4x4x64 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 2x2x64   				|
+| Flattening     	    | 2x2x64 --> 1x256  							|
+| Fully connected		| 1x256 * 256x120 -> 1x120        				|
+| Dropout       		|           									|
+| Fully connected		| 1x120 * 120x84 --> 1x84						|
+| Dropout       		|           									|
+| Fully connected		| 1x84 * 84*43 --> 1x43, no activation  		|
+| Softmax				| Softmax with Cross Entropy 					|
 |						|												|
 |						|												|
  
