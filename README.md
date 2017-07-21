@@ -62,6 +62,8 @@ Important points and actions taken
 * The data is clearly lopsided. There are some classes that are way more skewed in favour of the others
 * Action: I started to consider measures to create a common ground for all the classes. Most of them would have _roughly the same frequency.
 * Jitter through rotation (-15, 15), shear (5) and translation (5)
+* These jittered versions will be used to litter the training set with more data, and have nearly equal frequencies for all classes.
+* (I have intentionally not done negative example additions here. )
 
 I was able to go through LeCun's paper and understand that he was able to generate a robust training set by creating additional elements by jittering.
 
@@ -73,16 +75,24 @@ The techniques for jittering were:
 
 All the images were manipulated in the RGB colour scheme.
 
-All the three techniques were just enough for augmentation
+All the three techniques were just enough for augmentation. I call these 'perturbations' throughout the code.
 
 Here is a look at the images after a standard jitter: 
 ![Original image and its jittered counterpart](./examples/jitterimage.png)
 
-###Design and Test a Model Architecture
+**Design and Test a Model Architecture
 
 ####1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-Most the images had to be jittered slightly so as to have  
+
+As described in the previous section additional data was generated to augment the training set. 
+This improved the overall frequencies of the various class of traffic signs. 
+
+The data looks like this after the augmentation of the perturbations: 
+![After augmentation with perturbations](./examples/dataafteraug.png)
+
+However, this would still not be enough. There was the matter of cleaning up the image too.
+
 I started looking at the images to see what could be a great fit for cleaning up the images
 Some of the images were either too dark, or too bright. The colours were either washed out or too saturated.
 
@@ -90,11 +100,15 @@ I started looking around for contrast, but another interesting technique was at 
 Equalization of the histogram. This allows the image to be well represented. 
 Consequently, a great effect is that relevant parts of the image start standing out.
 
+I have two techniques in the code for equalizing the histogram. 
+I have one version where only the Y channel is equalized, after doing a RGB2YCR_CB format.
+
+
 An assumption was that the image would always be 32x32, and most of the image would be related to the sign.
 I test this in the unseen testing cases as well by throwing a lot of  images at the system.
 
 
-Here are examples of a traffic sign image before and after preprocessing.
+Here are examples of a traffic sign image before AND _after preprocessing.
 
 ![Jittered images and their preprocessed counterparts](./examples/preprocessedimage1.png)
 
@@ -102,11 +116,16 @@ and one more example of an original with a  jittered image, and an original with
 
 ![One more example of how preprocessing affects the images](./examples/preprocessedimage2.png)
 
-As a last step, I normalized the image data.
-
-![alt text][image3]
+As a last step, I normalized the image data using the mean/standard deviation approach as well. 
+Showing the normalized image (just for effect):
+![after normalization][./examples/afternomarlization.png]
 
 The difference between the original data set and the augmented data set is the following ... 
+
+Of course, this does not change the frequencies of the augmented data set: Only the individual images.
+The augmented data set looks like this: 
+![After augmentation with perturbations][./examples/dataafteraug.png]
+
 
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
