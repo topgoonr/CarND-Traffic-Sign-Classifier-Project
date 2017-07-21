@@ -3,7 +3,6 @@
 Author: Jayprasad Hegde
 ##Writeup Template
 
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
 ---
 
@@ -37,7 +36,7 @@ The goals / steps of this project are the following:
 
 ####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code] (https://github.com/topgoonr/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb) or a much more [readable version of the entire code]  with the necessary visualizations.
+You're reading it! and here is a link to my [project code](https://github.com/topgoonr/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb) or a much more [readable version of the entire code]  with the necessary visualizations.
 
 Data Set Summary & Exploration
 
@@ -54,7 +53,8 @@ signs data set:
 
 ####2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the data set. 
+It is a bar chart showing how the data looks like:
 
 ![Training Data visulaization before Augmentation][./examples/databeforeaug.png]
 
@@ -76,7 +76,7 @@ All the images were manipulated in the RGB colour scheme.
 All the three techniques were just enough for augmentation
 
 Here is a look at the images after a standard jitter: 
-![Original image and its jittered counterpart][./examples/jitterimage.png]
+![Original image and its jittered counterpart](./examples/jitterimage.png)
 
 ###Design and Test a Model Architecture
 
@@ -96,11 +96,11 @@ I test this in the unseen testing cases as well by throwing a lot of  images at 
 
 Here are examples of a traffic sign image before and after preprocessing.
 
-![Jittered images and their preprocessed counterparts][./examples/preprocessedimage1.png]
+![Jittered images and their preprocessed counterparts](./examples/preprocessedimage1.png)
 
 and one more example of an original with a  jittered image, and an original with a preprocessed image
 
-![One more example of how preprocessing affects the images][./examples/preprocessedimage2.png]
+![One more example of how preprocessing affects the images](./examples/preprocessedimage2.png)
 
 As a last step, I normalized the image data.
 
