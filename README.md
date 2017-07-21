@@ -1,7 +1,7 @@
 **Traffic Sign Recognition** 
 
 Author: Jayprasad Hegde
-##Writeup Template
+
 
 
 ---
@@ -32,13 +32,13 @@ The goals / steps of this project are the following:
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+**Writeup / README
 
 ####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
 You're reading it! and here is a link to my [project code](https://github.com/topgoonr/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb) or a much more [readable version of the entire code]  with the necessary visualizations.
 
-Data Set Summary & Exploration
+**Data Set Summary & Exploration
 
 ####1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
@@ -56,7 +56,7 @@ signs data set:
 Here is an exploratory visualization of the data set. 
 It is a bar chart showing how the data looks like:
 
-![Training Data visulaization before Augmentation][./examples/databeforeaug.png]
+![Training Data visulaization before Augmentation](./examples/databeforeaug.png)
 
 Important points and actions taken
 * The data is clearly lopsided. There are some classes that are way more skewed in favour of the others
@@ -65,7 +65,7 @@ Important points and actions taken
 
 I was able to go through LeCun's paper and understand that he was able to generate a robust training set by creating additional elements by jittering.
 
-The techniques for jittering were 
+The techniques for jittering were: 
 * Rotation (-15, 15)
 * Translation (5)
 * Shearing (5)
