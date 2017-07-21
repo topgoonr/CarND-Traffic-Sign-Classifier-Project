@@ -20,7 +20,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
+[image1]: ./examples/databeforeaug.png "Visualization"
 [image2]: ./examples/grayscale.jpg "Grayscaling"
 [image3]: ./examples/random_noise.jpg "Random Noise"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
@@ -43,7 +43,7 @@ Data Set Summary & Exploration
 
 ####1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
-I used the pandas/numpy  library to calculate summary statistics of the traffic
+I used the numpy  library to calculate summary statistics of the traffic
 signs data set:
 
 * The size of training set is 34799
@@ -56,25 +56,53 @@ signs data set:
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
 
-![alt text][image1]
+![Training Data visulaization before Augmentation][./examples/databeforeaug.png]
+
+Important points and actions taken
+* The data is clearly lopsided. There are some classes that are way more skewed in favour of the others
+* Action: I started to consider measures to create a common ground for all the classes. Most of them would have _roughly the same frequency.
+* Jitter through rotation (-15, 15), shear (5) and translation (5)
+
+I was able to go through LeCun's paper and understand that he was able to generate a robust training set by creating additional elements by jittering.
+
+The techniques for jittering were 
+* Rotation (-15, 15)
+* Translation (5)
+* Shearing (5)
+* Brightness 
+
+All the images were manipulated in the RGB colour scheme.
+
+All the three techniques were just enough for augmentation
+
+Here is a look at the images after a standard jitter: 
+![Original image and its jittered counterpart][./examples/jitterimage.png]
 
 ###Design and Test a Model Architecture
 
 ####1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-As a first step, I decided to convert the images to grayscale because ...
+Most the images had to be jittered slightly so as to have  
+I started looking at the images to see what could be a great fit for cleaning up the images
+Some of the images were either too dark, or too bright. The colours were either washed out or too saturated.
 
-Here is an example of a traffic sign image before and after grayscaling.
+I started looking around for contrast, but another interesting technique was at hand:
+Equalization of the histogram. This allows the image to be well represented. 
+Consequently, a great effect is that relevant parts of the image start standing out.
 
-![alt text][image2]
+An assumption was that the image would always be 32x32, and most of the image would be related to the sign.
+I test this in the unseen testing cases as well by throwing a lot of  images at the system.
 
-As a last step, I normalized the image data because ...
 
-I decided to generate additional data because ... 
+Here are examples of a traffic sign image before and after preprocessing.
 
-To add more data to the the data set, I used the following techniques because ... 
+![Jittered images and their preprocessed counterparts][./examples/preprocessedimage1.png]
 
-Here is an example of an original image and an augmented image:
+and one more example of an original with a  jittered image, and an original with a preprocessed image
+
+![One more example of how preprocessing affects the images][./examples/preprocessedimage2.png]
+
+As a last step, I normalized the image data.
 
 ![alt text][image3]
 
