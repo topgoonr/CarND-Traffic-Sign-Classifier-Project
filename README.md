@@ -272,6 +272,131 @@ The model was able to correctly guess 4 of the 5 traffic signs, which gives an a
 
 ![Probabilities ](./unseengermansigns/unseengerman_results.png)
 
+Let me discuss 3 images that are known to be taken at a distance, and the chances of the model performing badly and giving a false positive are fairly high.
+# image 1
+
+For the first image, the model is relatively sure that this is a traffic signal (probability of 0.74). The image has been skewed to be taken at an angle. The model completely misses out that this is a wild an
+imals crossing sign. It does figure in the top 5, but has a very low probability (0.006). The top five soft max probabilities were:
+
+
+| Probability           |     Prediction                                |
+|:---------------------:|:---------------------------------------------:|
+| .74                   | Traffic Signals       |
+| .20                   | Beware of ice/snow    |
+| .02                   | Road work             |
+| .006                  | Wild animals crossing |
+| .005                  | Double curve |
+
+
+# image 2:
+
+This image is also not an ideal image, and has been taken at a distance.
+This is a complete false positive. The results also indicate the high confidence for this.
+The model has not just marked it wrong, but has done it at a high probability of 0.71 too.
+This indicates further that the model is not completely tuned for images at a distance or skewed to look
+ thinner than usual, due to being taken at an angle, perhaps.
+
+
+
+| Probability           |     Prediction                                |
+|:---------------------:|:---------------------------------------------:|
+| .71                   | Wild animals crossing         |
+| .09                   | Beware of ice/snow    |
+| .06                   | Double curve          |
+| .06                   | Slippery road |
+| .04                   | Bicycles crossing |
+
+
+The above two patterns are true of a few other unseen images as well.
+Images 3 and 4 are also of this type.
+The model responds poorly to an image taken slightly at a distance
+
+# image 5
+This image is also not an ideal image, and has been taken at a distance.
+A variant of this image will be discussed later. However, the results are very striking.
+None of the top 5 candidates have this as a category.
+The top 2 of the 5 have low probability, so the model is not confident either.
+
+| Probability           |     Prediction                                |
+|:---------------------:|:---------------------------------------------:|
+| .19                   | 100km/h       |
+| .16                   | 120km/h|
+| .09                   | Yield         |
+| .09                   | Bumpy Road    |
+| .06                   | Slippery Road |
+
+
+# image 8
+Let us consider the same Yield traffic sign, now at a much more ideal distance with
+the full face of the sign facing the camera. A more contrasting result could not be possible.
+It detects it with a  very high probability rating as well,
+suggesting that it seems to have very low tolerance for other tyes of images.
+
+| Probability           |     Prediction                                |
+|:---------------------:|:---------------------------------------------:|
+| .98                   | Yield         |
+| .01                   | No vehicles   |
+| .0009                 | Go straight or right          |
+| .00005                | 60 km/h       |
+| .00002                | No passing |
+
+Images 8, 11 and 13 are birds of the same feather, and have super high probabilities for their classes.
+More than the categories, the shape and form of the picture seems to suggest that the NN works for these
+ types of classes.
+
+# image 11
+Expected and predicted are both Road work.
+
+| Probability           |     Prediction                                |
+|:---------------------:|:---------------------------------------------:|
+| .99                   | Road work             |
+| .00                   | General caution       |
+| .00                   | Bicycles crossing     |
+| .00                   | Traffic signals       |
+| .00                   | Road narrows on the right |
+
+
+# image 13
+Expected and predicted are both Go Straight or Left
+
+| Probability           |     Prediction                                |
+|:---------------------:|:---------------------------------------------:|
+| .99                   | Go Straight or Left
+| .00                   | Keep Left     |
+| .00                   | Roundabout Mandatory          |
+| .00                   | Traffic Signals       |
+| .00                   | Keep Right |
+
+
+# image 6
+
+Expected and predicted are both '70 km/h'
+
+| Probability           |     Prediction                                |
+|:---------------------:|:---------------------------------------------:|
+| .51                   | 70 km/h       |
+| .18                   | Pedestrians   |
+| .13                   | Keep Right            |
+| .07                   | Road narrows on the right     |
+| .05                   | 20 km/h |
+
+# image 7
+
+This particular image was chosen to test out how the model does in extreme conditions,
+when there are multiple traffic signs.
+It does not do well. This can be perhaps a human performance as well.
+
+The softmax probabilities are as follows:
+
+| Probability           |     Prediction                                |
+|:---------------------:|:---------------------------------------------:|
+| .60                   | Keep Left     |
+| .28                   | General Caution       |
+| .07                   | Keep Right            |
+| .02                   | Bumpy Road    |
+| .02                   | Slippery Road |
+
+
 
 ###(Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 ####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
