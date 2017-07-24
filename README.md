@@ -218,19 +218,19 @@ My final model results were:
 
 Here are five German traffic signs that I found on the web:
 
-[70](!70.jpeg)
-[curve](!curve.jpeg)
-[cycle](!cycle.jpeg)
-[deer](!deer.jpeg)
-[leftstraight](!leftstraight.jpeg)
-[menatwork](!menatwork.jpeg)
-[mix.jpeg](!mix.jpeg)
-[railway](!railway.jpeg)
-[right](!right.jpeg)
-[school](!school.jpeg)
-[th](!th.jpeg)
-[updown](!updown.jpeg)
-[yield](!yield.jpeg)
+[70](!./unseengermansigns/70.jpeg)
+[curve](!./unseengermansigns/curve.jpeg)
+[cycle](!./unseengermansigns/cycle.jpeg)
+[deer](!./unseengermansigns/deer.jpeg)
+[leftstraight](!./unseengermansigns/leftstraight.jpeg)
+[menatwork](!./unseengermansigns/menatwork.jpeg)
+[mix.jpeg](!./unseengermansigns/mix.jpeg)
+[railway](!./unseengermansigns/railway.jpeg)
+[right](!./unseengermansigns/right.jpeg)
+[school](!./unseengermansigns/school.jpeg)
+[th](!./unseengermansigns/th.jpeg)
+[updown](!./unseengermansigns/updown.jpeg)
+[yield](!./unseengermansigns/yield.jpeg)
 
 These are fairly realistic images, and I have chosen them because some of them have an inbuilt noise or might be at the zoom levels that are not explicitly mentioned here. The second interesting element is that a 32x32 image introduces its own set of errors that the larger image might not have, and results in the model finding it difficult to classify the images then.
 
