@@ -147,7 +147,7 @@ So, I built a 3 sequence Covnet+MaxPooling layers followed by 2 fully connected 
 The code 'secondneuralnetarch' describes this in great detail.
 
 
-My final model consisted of the following layers:
+My final` model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -218,57 +218,61 @@ My final model results were:
 
 Here are five German traffic signs that I found on the web:
 
-[70](!./unseengermansigns/70.jpeg)
-[curve](!./unseengermansigns/curve.jpeg)
-[cycle](!./unseengermansigns/cycle.jpeg)
-[deer](!./unseengermansigns/deer.jpeg)
-[leftstraight](!./unseengermansigns/leftstraight.jpeg)
-[menatwork](!./unseengermansigns/menatwork.jpeg)
-[mix.jpeg](!./unseengermansigns/mix.jpeg)
-[railway](!./unseengermansigns/railway.jpeg)
-[right](!./unseengermansigns/right.jpeg)
-[school](!./unseengermansigns/school.jpeg)
-[th](!./unseengermansigns/th.jpeg)
-[updown](!./unseengermansigns/updown.jpeg)
-[yield](!./unseengermansigns/yield.jpeg)
+![70](./unseengermansigns/70.jpeg)
+![curve](./unseengermansigns/curve.jpeg)
+![cycle](./unseengermansigns/cycle.jpeg)
+![deer](./unseengermansigns/deer.jpeg)
+![leftstraight](./unseengermansigns/leftstraight.jpeg)
+![menatwork](./unseengermansigns/menatwork.jpeg)
+![mix.jpeg](./unseengermansigns/mix.jpeg)
+![railway](./unseengermansigns/railway.jpeg)
+![right](./unseengermansigns/right.jpeg)
+![school](./unseengermansigns/school.jpeg)
+![th](./unseengermansigns/th.jpeg)
+![updown](./unseengermansigns/updown.jpeg)
+![yield](./unseengermansigns/yield.jpeg)
 
 These are fairly realistic images, and I have chosen them because some of them have an inbuilt noise or might be at the zoom levels that are not explicitly mentioned here. The second interesting element is that a 32x32 image introduces its own set of errors that the larger image might not have, and results in the model finding it difficult to classify the images then.
 
-The first image might be difficult to classify because ...
 
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+###2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric). >>
+The first image might be difficult to classify because ...
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+
+| Image                         |     Prediction|
+|:---------------------:|:---------------------------------------------:|
+| Wild Animal Crossing  | Traffic Signals       |
+| Double Curve          | Wild Animal Crossing  |
+| Railway               | Yield         |
+| End of no passing     | Priority Road   |
+| Yield                 | 100 km/h    |
+| 70 km/h               | 70 km/h       |
+| mashup of signs       | Keep Left     |
+| Yield                 | Yield |
+| School crossing       | ice/snow      |
+| Turn right            | Stop  |
+| Road Work             | Road Work     |
+| Bicycle               | Priority Road |
+| Go straight or left           | Go straight or left   |
+
+
+* The test set was set to strain it heavily and gives a low figure of 30%. 
+* However, if you check the ones that have been preprocessed correctly with the necessary imaging utilities to make them look like the training set images, it almost reaches an accuracy of 4 out of 5 -- which is 80%. 
+* This means that the network architecture is not attuned to image variations, and seems unforgiving for variations despite the shearing, the rotation, the brightness alterations. 
+* A image zoom-out/zoom-in as a part of the training set would have been perhaps more useful. 
+* When there are multiple signs, it does not do a good job either, getting confused quite easily. This is a slightly harder problem to solve. Maybe, we can focus on the traffic sign that is at the centre of the picture rather than everywhere in the image. 
 
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
 
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
-
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
-
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+![Probabilities ](./unseengermansigns/unseengerman_results.png)
 
 
-For the second image ... 
-
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
+###(Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 ####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
 
