@@ -216,7 +216,8 @@ My final model results were:
 
 ####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-Here are five German traffic signs that I found on the web:
+Here are 13 German traffic signs that I found on the web:
+They are varying in size, and were then resized to 32x32. 
 
 ![70](./unseengermansigns/70.jpeg)
 ![curve](./unseengermansigns/curve.jpeg)
