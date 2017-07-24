@@ -176,11 +176,10 @@ My final model consisted of the following layers:
 ####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
 ** Training 
-To train the model, I batches of 128 each
+To train the model, I made batches of 128 each. 
 The optimizer is an AdamOptimizer. 
 
 I started using 10 Epochs. However, this was not converging at 10. A value of 20 did it fine. 
-
 Having a GPU for training, does most definitely help, as the durations of the training can be quite long otherwise.
 
 
@@ -188,43 +187,52 @@ Having a GPU for training, does most definitely help, as the durations of the tr
 
 ** Approach for finding a solution
 
-With a base as LeNet was clearly inadequate. 
+Starting with  a base NN architecture as LeNet was clearly inadequate. 
 Preprocessing the images started helping the overall cause, as the results started to look better on validation.
-However I still had a peak of 91% at this point of time. 
+However I still had a peak of 91% validation at this point of time. 
 
 Looking at the Covnets and making them deeper definitely helped, as the overall accuracy started touching 93%. 
 
 Adding dropouts added a further more percentage points to the overall NN. 
 
-Although, I tried increasing the size of the fully connected layers. This was not achieving the desired results for me. 
+Although, I tried increasing the size of the fully connected layers. 
+This was not achieving the desired results for me. 
+
+I started deepening the network further by adding another Covnet with a max pool layer and a RELU. This improved the overall fitting of the network. I started tweaking the output to deepen this further. Tuning the output parameters was also important from the base version of the LeNet to the final version. This helped improve the overall precision numbers during validation and testing. 
+
+Augmenting the dataset helped this further. However, I had to be very careful in how I was augmenting this. 
+Using the histogram equalization technique helped further. I started doing a simple multiplication by 5 as an augmentation. However, this was clearly a naive solution to augmentation as it only worsens the effect of the frequencies. The large numbers get larger, and the small numbers look smaller. So, equalizing the frequencies helped with creating a better/fairer training set. I did not add negative images, as that was not really a concern when I started training. Underfitting was an issue.
+Adding dropouts started making the learning better. These were added to ensure that overfitting is not really an issue.
+
+I have included both the initial and the final iterations of the network that I have created. The intermediate iterations have not been intentionally included for brevity. 
 
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* validation set accuracy of 96%  
+* test set accuracy of 92%
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+* Test a Model on New Images
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
-
-###Test a Model on New Images
 
 ####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+[70][!70.jpeg]
+[curve][!curve.jpeg]
+[cycle][!cycle.jpeg
+[deer][!deer.jpeg]
+[leftstraight][!leftstraight.jpeg]
+[menatwork][!menatwork.jpeg]
+[mix.jpeg][!mix.jpeg]
+[railway][!railway.jpeg]
+[right][!right.jpeg]
+[school][!school.jpeg]
+[th][!th.jpeg]
+[updown][!updown.jpeg]
+[yield][!yield.jpeg]
+
+These are fairly realistic images, and I have chosen them because some of them have an inbuilt noise or might be at the zoom levels that are not explicitly mentioned here. The second interesting element is that a 32x32 image introduces its own set of errors that the larger image might not have, and results in the model finding it difficult to classify the images then.
 
 The first image might be difficult to classify because ...
 
